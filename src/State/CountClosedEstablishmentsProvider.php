@@ -7,7 +7,7 @@ use ApiPlatform\Metadata\Operation;
 use App\Dto\CompanyDto;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-class CompanyDataProvider implements ProviderInterface
+class CountClosedEstablishmentsProvider implements ProviderInterface
 {
     private HttpClientInterface $client;
 
@@ -27,9 +27,12 @@ class CompanyDataProvider implements ProviderInterface
         foreach ($data['results'] ?? [] as $result) {
             $dto = new CompanyDto();
             $dto->siren = $result['siren'] ?? '';
-            $dto->nom_complet = $result['nom_complet'] ?? '';
-            $dto->nom_raison_sociale = $result['nom_raison_sociale'] ?? '';
-            
+            $dto->nombre_etablissements = $result['nombre_etablissements'] ?? 0;
+            $dto->nombre_etablissements_ouverts = $result['nombre_etablissements_ouverts'] ?? 0;
+            $dto->nombre_etablissements_fermes = max(
+                0,
+                $dto->nombre_etablissements - $dto->nombre_etablissements_ouverts
+            );
             $dtos[] = $dto;
         }
 
