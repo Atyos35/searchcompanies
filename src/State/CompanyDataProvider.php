@@ -20,7 +20,7 @@ class CompanyDataProvider implements ProviderInterface
     {
         $query = $context['filters']['q'] ?? '';
 
-        $response = $this->client->request('GET', 'https://recherche-entreprises.api.gouv.fr/search?q=' . urlencode($query));
+        $response = $this->client->request('GET', 'https://recherche-entreprises.api.gouv.fr/search?q=' . urlencode('La Poste'));
         $data = $response->toArray();
 
         $dtos = [];

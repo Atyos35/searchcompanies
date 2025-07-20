@@ -19,6 +19,7 @@ use App\State\CountClosedEstablishmentsProvider;
             uriTemplate: '/companies/closed-count',
             provider: CountClosedEstablishmentsProvider::class,
             normalizationContext: ['groups' => ['company:closed_count']],
+            
             name: 'company_closed_establishments_count'
         )
     ]
