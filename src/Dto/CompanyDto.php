@@ -18,16 +18,21 @@ use App\State\CompanyDataProvider;
 )]
 class CompanyDto
 {
+    #[ApiProperty(description: "Numéro SIREN unique de l'entreprise")]
     #[Groups(['company:read'])]
     public string $siren;
 
+    #[ApiProperty(description: "Nom de l'entreprise")]
     #[Groups(['company:read'])]
     public string $nom_complet;
 
+    #[ApiProperty(description: "Raison sociale de l'entreprise")]
     #[Groups(['company:read'])]
     public string $nom_raison_sociale;
 
+    #[ApiProperty(description: "Nombre d'établissements liés à l'entreprise")]
     public int $nombre_etablissements;
 
+    #[ApiProperty(description: "Nombre d'établissements ouverts liés à l'entreprise")]
     public int $nombre_etablissements_ouverts;
 }
